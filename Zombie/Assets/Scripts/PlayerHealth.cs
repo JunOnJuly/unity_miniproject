@@ -35,6 +35,11 @@ public class PlayerHealth : LivingEntity {
         playerShooter.enabled = true;
     }
 
+    private void Update()
+    {
+        healthSlider.maxValue = startingHealth;
+    }
+
     // 체력 회복
     public override void RestoreHealth(float newHealth) {
         // LivingEntity의 RestoreHealth() 실행 (체력 증가)

@@ -24,7 +24,7 @@ public class ItemSpawner : MonoBehaviour {
     private void Update() {
         // 현재 시점이 마지막 생성 시점에서 생성 주기 이상 지남
         // && 플레이어 캐릭터가 존재함
-        if (Time.time >= lastSpawnTime + timeBetSpawn && playerTransform != null)
+        if (Time.time >= lastSpawnTime + timeBetSpawn && playerTransform != null && !GameManager.instance.onShop)
         {
             // 마지막 생성 시간 갱신
             lastSpawnTime = Time.time;

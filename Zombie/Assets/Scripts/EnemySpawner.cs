@@ -21,6 +21,12 @@ public class EnemySpawner : MonoBehaviour {
     private List<Enemy> enemies = new List<Enemy>(); // 생성된 적들을 담는 리스트
     private int wave; // 현재 웨이브
 
+    private void Start()
+    {
+        SpawnWave();
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     private void Update() {
         // 게임 오버 상태일때는 생성하지 않음
         if (GameManager.instance != null && GameManager.instance.isGameover)
@@ -31,7 +37,20 @@ public class EnemySpawner : MonoBehaviour {
         // 적을 모두 물리친 경우 다음 스폰 실행
         if (enemies.Count <= 0)
         {
-            SpawnWave();
+            if (!GameManager.instance.isShop)
+            {
+                UIManager.instance.Shop(true);
+                Cursor.lockState = CursorLockMode.None;
+                GameManager.instance.onShop = true;
+            }
+            else
+            {
+                UIManager.instance.Shop(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                SpawnWave();
+                GameManager.instance.isShop = false;
+                GameManager.instance.onShop = true;
+            }
         }
 
         // UI 갱신
@@ -72,6 +91,8 @@ public class EnemySpawner : MonoBehaviour {
 
         enemy.onDeath += () => enemies.Remove(enemy);
         enemy.onDeath += () => Destroy(enemy.gameObject, 10f);
-        enemy.onDeath += () => GameManager.instance.AddScore(100);
+        enemy.onDeath += () => GameManager.instance.AddScore(200, 100);
     }
+
+
 }

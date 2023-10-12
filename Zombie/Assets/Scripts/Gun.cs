@@ -23,7 +23,7 @@ public class Gun : MonoBehaviour {
     public AudioClip shotClip; // 발사 소리
     public AudioClip reloadClip; // 재장전 소리
 
-    public float damage = 25; // 공격력
+    public int damage = 20; // 공격력
     private float fireDistance = 50f; // 사정거리
 
     public int ammoRemain = 100; // 남은 전체 탄약
@@ -35,8 +35,14 @@ public class Gun : MonoBehaviour {
     public float reloadTime = 1.8f; // 재장전 소요 시간
     private float lastFireTime; // 총을 마지막으로 발사한 시점
 
+    private void Update()
+    {
+        damage = GameManager.instance.gun;
+        magCapacity = GameManager.instance.bullet;
+    }
 
-    private void Awake() {
+
+private void Awake() {
         // 사용할 컴포넌트들의 참조를 가져오기
         gunAudioPlayer = GetComponent<AudioSource>();
         bulletLineRenderer = GetComponent<LineRenderer>();
@@ -54,7 +60,7 @@ public class Gun : MonoBehaviour {
 
     // 발사 시도
     public void Fire() {
-        if (state == State.Ready && Time.time >= lastFireTime + timeBetFire)
+        if (state == State.Ready && Time.time >= lastFireTime + timeBetFire && !GameManager.instance.onShop)
         {
             lastFireTime = Time.time;
             Shot();
