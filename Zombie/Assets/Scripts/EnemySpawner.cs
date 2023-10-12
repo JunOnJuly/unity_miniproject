@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private void Update() {
         textTimeEnd = Time.time - sceneStartTime;
-
+        Debug.Log(textTimeEnd);
         // 게임 오버 상태일때는 생성하지 않음
         if (GameManager.instance != null && GameManager.instance.isGameover)
         {
@@ -62,7 +62,8 @@ public class EnemySpawner : MonoBehaviour {
 
                 waveText.text = "Wave  " + wave + "  Start";
                 waveText.gameObject.SetActive(true);
-                textTimeStart = Time.time;
+                textTimeStart = Time.time - sceneStartTime;
+                GameManager.instance.isShop = false;
             }
         }
 
