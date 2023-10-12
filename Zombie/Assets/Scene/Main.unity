@@ -685,7 +685,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.296
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1944,7 +1944,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 33a48263b70b34405ba79e06e039919c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.301
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3182,6 +3182,7 @@ MonoBehaviour:
   speedMin: 1
   strongEnemyColor: {r: 1, g: 0, b: 0, a: 1}
   waveText: {fileID: 591829055}
+  sceneStartTime: 0
   textTimeStart: 0
   textTimeEnd: 0
   textTimeLimit: 1
