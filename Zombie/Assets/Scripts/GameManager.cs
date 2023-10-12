@@ -50,8 +50,6 @@ public class GameManager : MonoBehaviour {
     public int bullet = 25;
     public int speed = 5;
 
-    public int wave = 0;
-
     private void Awake() {
         // 씬에 싱글톤 오브젝트가 된 다른 GameManager 오브젝트가 있다면
         if (instance != this)
@@ -98,18 +96,21 @@ public class GameManager : MonoBehaviour {
 
     public void ChangeCamera()
     {
-        if (Input.GetMouseButtonDown(1) && !GameManager.instance.onShop)
+        if (!GameManager.instance.onShop)
         {
-            TPSCamera.Priority = 0;
-            RedDot.enabled = true;
-            FPSCamera.Priority = 1;
-        }
+            if (Input.GetMouseButtonDown(1))
+            {
+                TPSCamera.Priority = 0;
+                RedDot.enabled = true;
+                FPSCamera.Priority = 1;
+            }
 
-        else if (Input.GetMouseButtonUp(1))
-        {
-            TPSCamera.Priority = 1;
-            RedDot.enabled = false;
-            FPSCamera.Priority = 0;
+            else if (Input.GetMouseButtonUp(1))
+            {
+                TPSCamera.Priority = 1;
+                RedDot.enabled = false;
+                FPSCamera.Priority = 0;
+            }
         }
     }
 

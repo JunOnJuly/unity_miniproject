@@ -27,6 +27,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
+    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
@@ -889,7 +890,7 @@ ScriptsOnlyBuild:
     className: DepthOfField
   - hash:
       serializedVersion: 2
-      Hash: d08204cf145a5c4bcd64f2dae6c935d2
+      Hash: b2d77b038f9167680d512036df8325c5
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: EnemySpawner
@@ -1321,7 +1322,7 @@ ScriptsOnlyBuild:
     className: TouchInputModule
   - hash:
       serializedVersion: 2
-      Hash: fac623f78627830559d47c52e26cd17c
+      Hash: bd595f2706be85c94fe44d56480f6654
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameManager

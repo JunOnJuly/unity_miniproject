@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 // 적 게임 오브젝트를 주기적으로 생성
 public class EnemySpawner : MonoBehaviour {
@@ -23,19 +21,13 @@ public class EnemySpawner : MonoBehaviour {
     private List<Enemy> enemies = new List<Enemy>(); // 생성된 적들을 담는 리스트
     private int wave; // 현재 웨이브
 
-    public Text waveText;
-    public float textTimeStart = 0f;
-    public float textTimeEnd = 0f;
-    public float textTimeLimit = 1f;
-
     private void Start()
     {
-        wave = GameManager.instance.wave;
+        SpawnWave();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update() {
-        textTimeEnd = Time.time;
-
         // 게임 오버 상태일때는 생성하지 않음
         if (GameManager.instance != null && GameManager.instance.isGameover)
         {
@@ -45,28 +37,20 @@ public class EnemySpawner : MonoBehaviour {
         // 적을 모두 물리친 경우 다음 스폰 실행
         if (enemies.Count <= 0)
         {
-            if (!GameManager.instance.isShop && textTimeEnd - textTimeStart > textTimeLimit)
+            if (!GameManager.instance.isShop)
             {
                 UIManager.instance.Shop(true);
-                UnityEngine.Cursor.lockState = CursorLockMode.None;
+                Cursor.lockState = CursorLockMode.None;
                 GameManager.instance.onShop = true;
             }
             else
             {
                 UIManager.instance.Shop(false);
-                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-
+                Cursor.lockState = CursorLockMode.Locked;
                 SpawnWave();
-
-                waveText.text = "Wave  " + wave + "  Start";
-                waveText.gameObject.SetActive(true);
-                textTimeStart = Time.time;
+                GameManager.instance.isShop = false;
+                GameManager.instance.onShop = false;
             }
-        }
-
-        if (textTimeEnd - textTimeStart > textTimeLimit)
-        {
-            waveText.gameObject.SetActive(false);
         }
 
         // UI 갱신
@@ -81,8 +65,7 @@ public class EnemySpawner : MonoBehaviour {
 
     // 현재 웨이브에 맞춰 적을 생성
     private void SpawnWave() {
-        GameManager.instance.wave++;
-        wave = GameManager.instance.wave;
+        wave++;
 
         int spawnCount = Mathf.RoundToInt(wave * 1.5f);
 
