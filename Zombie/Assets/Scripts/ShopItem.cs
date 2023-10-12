@@ -113,6 +113,7 @@ public class ShopItem : MonoBehaviour, IPointerClickHandler
         if (eventData.pointerPressRaycast.gameObject.name == "Exit")
         {
             GameManager.instance.isShop = true;
+            GameManager.instance.onShop = false;
         }
     }
 }

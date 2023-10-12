@@ -49,7 +49,7 @@ public class EnemySpawner : MonoBehaviour {
                 Cursor.lockState = CursorLockMode.Locked;
                 SpawnWave();
                 GameManager.instance.isShop = false;
-                GameManager.instance.onShop = true;
+                GameManager.instance.onShop = false;
             }
         }
 
